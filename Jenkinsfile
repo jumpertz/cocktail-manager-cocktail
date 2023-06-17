@@ -36,17 +36,3 @@ pipeline {
         }
     }
 }
-
-// 1C9B7D967484D2B4DC4B6CB5A2B6A
-
-// node {
-//   stage('SCM') {
-//     checkout scm
-//   }
-//   stage('SonarQube Analysis') {
-//     def scannerHome = tool 'CocktailManager-auth';
-//     withSonarQubeEnv() {
-//       sh "${scannerHome}/bin/sonar-scanner"
-//     }
-//   }
-// }
