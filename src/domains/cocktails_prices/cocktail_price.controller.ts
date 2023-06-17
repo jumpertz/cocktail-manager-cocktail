@@ -1,8 +1,8 @@
 import { Controller } from '@nestjs/common';
 import { MessagePattern, Payload } from '@nestjs/microservices';
-import { CocktailPriceService } from './cocktails_prices.service';
-import { CreateCocktailPriceDto } from './dto/create-cocktails_prices.dto';
-import { UpdateCocktailPriceDto } from './dto/update-cocktails_prices.dto';
+import { CocktailPriceService } from './cocktail_price.service';
+import { CreateCocktailPriceDto } from './dto/create-cocktail_price.dto';
+import { UpdateCocktailPriceDto } from './dto/update-cocktail_price.dto';
 
 @Controller()
 export class CocktailPriceController {

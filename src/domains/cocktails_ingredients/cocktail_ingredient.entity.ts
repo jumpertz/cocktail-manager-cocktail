@@ -1,5 +1,4 @@
 import { Column, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
-import { Exclude } from "class-transformer";
 import { Cocktail } from "../cocktails/cocktail.entity";
 import { Ingredient } from "../ingredients/ingredient.entity";
 

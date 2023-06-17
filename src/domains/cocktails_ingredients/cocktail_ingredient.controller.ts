@@ -1,8 +1,8 @@
 import { ClassSerializerInterceptor, Controller, UseInterceptors } from '@nestjs/common';
 import { MessagePattern, Payload } from '@nestjs/microservices';
-import { CocktailIngredientService } from './cocktails_ingredients.service';
-import { CreateCocktailIngredientDto } from './dto/create-cocktails_ingredients.dto';
-import { UpdateCocktailIngredientDto } from './dto/update-cocktails_ingredients.dto';
+import { CocktailIngredientService } from './cocktail_ingredient.service';
+import { CreateCocktailIngredientDto } from './dto/create-cocktail_ingredient.dto';
+import { UpdateCocktailIngredientDto } from './dto/update-cocktail_ingredient.dto';
 
 @Controller()
 export class CocktailIngredientController {

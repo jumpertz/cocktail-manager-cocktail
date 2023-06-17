@@ -17,10 +17,4 @@ export class Ingredient {
 
     @OneToMany(() => CocktailIngredient, (ci) => ci.ingredient)
     cocktails: CocktailIngredient[];
-
-    @Column()
-    stock: number;
-
-    @Column()
-    stockAlert: number;
 }

@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { CreateCocktailIngredientDto } from './dto/create-cocktails_ingredients.dto';
-import { UpdateCocktailIngredientDto } from './dto/update-cocktails_ingredients.dto';
+import { CreateCocktailPriceDto } from './dto/create-cocktail_price.dto';
+import { UpdateCocktailPriceDto } from './dto/update-cocktail_price.dto';
 
 @Injectable()
-export class CocktailIngredientService {
-  create(createCocktailIngredientDto: CreateCocktailIngredientDto) {
+export class CocktailPriceService {
+  create(createCocktailPriceDto: CreateCocktailPriceDto) {
     return 'This action adds a new cocktail';
   }
 
@@ -16,7 +16,7 @@ export class CocktailIngredientService {
     return `This action returns a #${id} cocktail`;
   }
 
-  update(id: number, updateCocktailIngredientDto: UpdateCocktailIngredientDto) {
+  update(id: number, updateCocktailPriceDto: UpdateCocktailPriceDto) {
     return `This action updates a #${id} cocktail`;
   }
 
