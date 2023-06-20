@@ -6,4 +6,4 @@ import { CocktailPriceController } from './cocktail_price.controller';
   controllers: [CocktailPriceController],
   providers: [CocktailPriceService]
 })
-export class CocktailModule { }
+export class CocktailPriceModule { }

@@ -9,6 +9,9 @@ export class CocktailStep {
     @Column()
     position: number;
 
+    @Column()
+    description: string;
+
     @ManyToOne(() => Cocktail, cocktail => cocktail.steps)
     cocktail: Cocktail;
 }

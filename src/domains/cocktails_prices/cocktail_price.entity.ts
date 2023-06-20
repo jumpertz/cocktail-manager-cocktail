@@ -1,17 +1,17 @@
-import { Column, PrimaryGeneratedColumn } from "typeorm";
+import { Column, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Exclude } from "class-transformer";
+import { Cocktail } from "../cocktails/cocktail.entity";
 
 export class CocktailPrice {
     @PrimaryGeneratedColumn('uuid')
-    @Exclude()
     id: string;
 
     @Column()
-    name: string;
+    price: number;
 
     @Column()
-    image: string;
+    isHappyHour: boolean;
 
-    @Column()
-    manager: string;
+    @ManyToOne(() => Cocktail, cocktail => cocktail.prices)
+    cocktail: Cocktail;
 }
