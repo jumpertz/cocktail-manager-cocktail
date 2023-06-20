@@ -3,7 +3,7 @@ import { CocktailIngredientService } from './cocktail_ingredient.service';
 import { CocktailIngredientController } from './cocktail_ingredient.controller';
 
 @Module({
-  controllers: [CocktailIngredientController],
-  providers: [CocktailIngredientService]
+    controllers: [CocktailIngredientController],
+    providers: [CocktailIngredientService]
 })
 export class CocktailIngredientModule { }

@@ -19,7 +19,7 @@ export class CocktailPriceController {
   }
 
   @MessagePattern('findOneCocktailPrice')
-  findOne(@Payload() id: number) {
+  findOne(@Payload() id: string) {
     return this.cocktailService.findOne(id);
   }
 
@@ -29,7 +29,7 @@ export class CocktailPriceController {
   }
 
   @MessagePattern('removeCocktailPrice')
-  remove(@Payload() id: number) {
+  remove(@Payload() id: string) {
     return this.cocktailService.remove(id);
   }
 }

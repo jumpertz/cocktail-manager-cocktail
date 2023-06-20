@@ -6,31 +6,31 @@ import { UpdateCocktailIngredientDto } from './dto/update-cocktail_ingredient.dt
 
 @Controller()
 export class CocktailIngredientController {
-  constructor(private readonly cocktailService: CocktailIngredientService) { }
+    constructor(private readonly cocktailService: CocktailIngredientService) { }
 
-  @MessagePattern('createCocktailIngredient')
-  create(@Payload() createCocktailIngredientDto: CreateCocktailIngredientDto) {
-    return this.cocktailService.create(createCocktailIngredientDto);
-  }
+    @MessagePattern('createCocktailIngredient')
+    create(@Payload() createCocktailIngredientDto: CreateCocktailIngredientDto) {
+        return this.cocktailService.create(createCocktailIngredientDto);
+    }
 
-  @MessagePattern('findAllCocktailIngredient')
-  @UseInterceptors(ClassSerializerInterceptor)
-  findAll() {
-    return this.cocktailService.findAll();
-  }
+    @MessagePattern('findAllCocktailIngredient')
+    @UseInterceptors(ClassSerializerInterceptor)
+    findAll() {
+        return this.cocktailService.findAll();
+    }
 
-  @MessagePattern('findOneCocktailIngredient')
-  findOne(@Payload() id: number) {
-    return this.cocktailService.findOne(id);
-  }
+    @MessagePattern('findOneCocktailIngredient')
+    findOne(@Payload() id: string) {
+        return this.cocktailService.findOne(id);
+    }
 
-  @MessagePattern('updateCocktailIngredient')
-  update(@Payload() updateCocktailIngredientDto: UpdateCocktailIngredientDto) {
-    return this.cocktailService.update(updateCocktailIngredientDto.id, updateCocktailIngredientDto);
-  }
+    @MessagePattern('updateCocktailIngredient')
+    update(@Payload() updateCocktailIngredientDto: UpdateCocktailIngredientDto) {
+        return this.cocktailService.update(updateCocktailIngredientDto.id, updateCocktailIngredientDto);
+    }
 
-  @MessagePattern('removeCocktailIngredient')
-  remove(@Payload() id: number) {
-    return this.cocktailService.remove(id);
-  }
+    @MessagePattern('removeCocktailIngredient')
+    remove(@Payload() id: string) {
+        return this.cocktailService.remove(id);
+    }
 }

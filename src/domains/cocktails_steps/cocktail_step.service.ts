@@ -12,15 +12,15 @@ export class CocktailStepService {
     return `This action returns all cocktail`;
   }
 
-  findOne(id: number) {
+  findOne(id: string) {
     return `This action returns a #${id} cocktail`;
   }
 
-  update(id: number, updateCocktailStepDto: UpdateCocktailStepDto) {
+  update(id: string, updateCocktailStepDto: UpdateCocktailStepDto) {
     return `This action updates a #${id} cocktail`;
   }
 
-  remove(id: number) {
+  remove(id: string) {
     return `This action removes a #${id} cocktail`;
   }
 }

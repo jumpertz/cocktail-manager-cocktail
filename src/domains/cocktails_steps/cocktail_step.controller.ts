@@ -19,7 +19,7 @@ export class CocktailStepController {
   }
 
   @MessagePattern('findOneCocktailStep')
-  findOne(@Payload() id: number) {
+  findOne(@Payload() id: string) {
     return this.ingredientService.findOne(id);
   }
 
@@ -29,7 +29,7 @@ export class CocktailStepController {
   }
 
   @MessagePattern('removeCocktailStep')
-  remove(@Payload() id: number) {
+  remove(@Payload() id: string) {
     return this.ingredientService.remove(id);
   }
 }

@@ -1,1 +1,5 @@
-export class CreateCocktailPriceDto { }
+export class CreateCocktailPriceDto {
+    cocktailId: string;
+    priceId: string;
+    price: number;
+}

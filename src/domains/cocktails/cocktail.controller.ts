@@ -6,30 +6,30 @@ import { UpdateCocktailDto } from './dto/update-cocktail.dto';
 
 @Controller()
 export class CocktailController {
-  constructor(private readonly cocktailService: CocktailService) {}
+    constructor(private readonly cocktailService: CocktailService) { }
 
-  @MessagePattern('createCocktail')
-  create(@Payload() createCocktailDto: CreateCocktailDto) {
-    return this.cocktailService.create(createCocktailDto);
-  }
+    @MessagePattern('createCocktail')
+    create(@Payload() createCocktailDto: CreateCocktailDto) {
+        return this.cocktailService.create(createCocktailDto);
+    }
 
-  @MessagePattern('findAllCocktail')
-  findAll() {
-    return this.cocktailService.findAll();
-  }
+    @MessagePattern('findAllCocktail')
+    findAll() {
+        return this.cocktailService.findAll();
+    }
 
-  @MessagePattern('findOneCocktail')
-  findOne(@Payload() id: number) {
-    return this.cocktailService.findOne(id);
-  }
+    @MessagePattern('findOneCocktail')
+    findOne(@Payload() id: string) {
+        return this.cocktailService.findOne(id);
+    }
 
-  @MessagePattern('updateCocktail')
-  update(@Payload() updateCocktailDto: UpdateCocktailDto) {
-    return this.cocktailService.update(updateCocktailDto.id, updateCocktailDto);
-  }
+    @MessagePattern('updateCocktail')
+    update(@Payload() updateCocktailDto: UpdateCocktailDto) {
+        return this.cocktailService.update(updateCocktailDto.id, updateCocktailDto);
+    }
 
-  @MessagePattern('removeCocktail')
-  remove(@Payload() id: number) {
-    return this.cocktailService.remove(id);
-  }
+    @MessagePattern('removeCocktail')
+    remove(@Payload() id: string) {
+        return this.cocktailService.remove(id);
+    }
 }

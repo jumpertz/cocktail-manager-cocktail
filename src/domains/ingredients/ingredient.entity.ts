@@ -1,5 +1,6 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { CocktailIngredient } from "../cocktails_ingredients/cocktail_ingredient.entity";
+import { Exclude } from "class-transformer";
 
 @Entity()
 export class Ingredient {
@@ -23,4 +24,20 @@ export class Ingredient {
 
     @Column()
     stockAlert: number;
+
+    @CreateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+    @Exclude()
+    createdAt: Date;
+
+    @UpdateDateColumn({
+        type: 'timestamp',
+        default: () => 'CURRENT_TIMESTAMP',
+        onUpdate: 'CURRENT_TIMESTAMP',
+    })
+    @Exclude()
+    updatedAt: Date;
+
+    @DeleteDateColumn({ type: 'timestamp', nullable: true })
+    @Exclude()
+    deletedAt: Date | null;
 }

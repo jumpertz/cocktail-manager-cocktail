@@ -1,9 +1,8 @@
-import { Column, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { Exclude } from "class-transformer";
-import { Ingredient } from "../ingredients/ingredient.entity";
+import { Column, CreateDateColumn, DeleteDateColumn, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { CocktailIngredient } from "../cocktails_ingredients/cocktail_ingredient.entity";
 import { CocktailStep } from "../cocktails_steps/cocktail_step.entity";
 import { CocktailPrice } from "../cocktails_prices/cocktail_price.entity";
+import { Exclude } from "class-transformer";
 
 export class Cocktail {
     @PrimaryGeneratedColumn('uuid')
@@ -26,4 +25,20 @@ export class Cocktail {
 
     @OneToMany(() => CocktailPrice, (cp) => cp.cocktail)
     prices: CocktailPrice[];
+
+    @CreateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+    @Exclude()
+    createdAt: Date;
+
+    @UpdateDateColumn({
+        type: 'timestamp',
+        default: () => 'CURRENT_TIMESTAMP',
+        onUpdate: 'CURRENT_TIMESTAMP',
+    })
+    @Exclude()
+    updatedAt: Date;
+
+    @DeleteDateColumn({ type: 'timestamp', nullable: true })
+    @Exclude()
+    deletedAt: Date | null;
 }
