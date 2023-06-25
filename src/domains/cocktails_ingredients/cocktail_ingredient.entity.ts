@@ -1,8 +1,9 @@
-import { Column, CreateDateColumn, DeleteDateColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { Cocktail } from "../cocktails/cocktail.entity";
 import { Ingredient } from "../ingredients/ingredient.entity";
 import { Exclude } from "class-transformer";
 
+@Entity()
 export class CocktailIngredient {
     @PrimaryGeneratedColumn('uuid')
     cocktailId: string;

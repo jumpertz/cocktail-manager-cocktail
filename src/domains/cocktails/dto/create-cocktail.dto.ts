@@ -1,21 +1,31 @@
-import { IsNotEmpty } from "class-validator";
-import { CocktailIngredient } from "src/domains/cocktails_ingredients/cocktail_ingredient.entity";
-import { CocktailPrice } from "src/domains/cocktails_prices/cocktail_price.entity";
-import { CocktailStep } from "src/domains/cocktails_steps/cocktail_step.entity";
+import { Type } from "class-transformer";
+import { IsNotEmpty, IsString, ValidateNested } from "class-validator";
+import { CreateCocktailIngredientDto } from "src/domains/cocktails_ingredients/dto/create-cocktail_ingredient.dto";
+import { CreateCocktailPriceDto } from "src/domains/cocktails_prices/dto/create-cocktail_price.dto";
+import { CreateCocktailStepDto } from "src/domains/cocktails_steps/dto/create-cocktail_step.dto";
 
 export class CreateCocktailDto {
 
     @IsNotEmpty()
+    @IsString()
     name: string;
 
     @IsNotEmpty()
+    @IsString()
     description: string;
 
-    image: string;
+    // @IsNotEmpty()
+    // image: string;
 
-    cocktailPrices: CocktailPrice[];
+    @ValidateNested({ each: true })
+    @Type(() => CreateCocktailPriceDto)
+    cocktailPrices: CreateCocktailPriceDto[];
 
-    cocktailIngredients: CocktailIngredient[];
+    @ValidateNested({ each: true })
+    @Type(() => CreateCocktailIngredientDto)
+    cocktailIngredients: CreateCocktailIngredientDto[];
 
-    cocktailSteps: CocktailStep[];
+    @ValidateNested({ each: true })
+    @Type(() => CreateCocktailStepDto)
+    cocktailSteps: CreateCocktailStepDto[];
 }

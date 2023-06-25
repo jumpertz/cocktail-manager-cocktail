@@ -1,9 +1,10 @@
-import { Column, CreateDateColumn, DeleteDateColumn, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { CocktailIngredient } from "../cocktails_ingredients/cocktail_ingredient.entity";
 import { CocktailStep } from "../cocktails_steps/cocktail_step.entity";
 import { CocktailPrice } from "../cocktails_prices/cocktail_price.entity";
 import { Exclude } from "class-transformer";
 
+@Entity()
 export class Cocktail {
     @PrimaryGeneratedColumn('uuid')
     id: string;
@@ -11,8 +12,8 @@ export class Cocktail {
     @Column()
     name: string;
 
-    @Column()
-    image: string;
+    // @Column()
+    // image: string;
 
     @Column()
     manager: string;

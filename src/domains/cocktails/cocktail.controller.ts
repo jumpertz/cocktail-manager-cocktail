@@ -1,5 +1,5 @@
 import { Controller } from '@nestjs/common';
-import { MessagePattern, Payload } from '@nestjs/microservices';
+import { EventPattern, MessagePattern, Payload } from '@nestjs/microservices';
 import { CocktailService } from './cocktail.service';
 import { CreateCocktailDto } from './dto/create-cocktail.dto';
 import { UpdateCocktailDto } from './dto/update-cocktail.dto';
@@ -8,27 +8,27 @@ import { UpdateCocktailDto } from './dto/update-cocktail.dto';
 export class CocktailController {
     constructor(private readonly cocktailService: CocktailService) { }
 
-    @MessagePattern('createCocktail')
+    @EventPattern('createCocktail')
     create(@Payload() createCocktailDto: CreateCocktailDto) {
         return this.cocktailService.create(createCocktailDto);
     }
 
-    @MessagePattern('findAllCocktail')
+    @EventPattern('findAllCocktail')
     findAll() {
         return this.cocktailService.findAll();
     }
 
-    @MessagePattern('findOneCocktail')
+    @EventPattern('findOneCocktail')
     findOne(@Payload() id: string) {
         return this.cocktailService.findOne(id);
     }
 
-    @MessagePattern('updateCocktail')
+    @EventPattern('updateCocktail')
     update(@Payload() updateCocktailDto: UpdateCocktailDto) {
         return this.cocktailService.update(updateCocktailDto.id, updateCocktailDto);
     }
 
-    @MessagePattern('removeCocktail')
+    @EventPattern('removeCocktail')
     remove(@Payload() id: string) {
         return this.cocktailService.remove(id);
     }

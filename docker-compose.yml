@@ -1,0 +1,36 @@
+version: '3.7'
+
+services:
+  api:
+    container_name: cocktail-manager-cocktail-api
+    image: node:18-alpine
+    user: node
+    working_dir: /home/node
+    env_file: .env
+    ports:
+      - '${PORT:-7000}:7000'
+    volumes:
+      - .:/home/node
+    command: /bin/sh -c "npm i && npm run start:dev"
+    networks:
+      - cocktail-manager-network
+
+  db:
+    container_name: cocktail-manager-cocktail-db
+    image: postgres:13-alpine
+    ports:
+      - 5434:5434
+    environment:
+      POSTGRES_USER: ${BDD_USER}
+      POSTGRES_PASSWORD: ${BDD_PASSWORD}
+      POSTGRES_DB: ${BDD_NAME}
+    volumes:
+      - cocktail-manager-cocktail-db-data:/var/lib/postgresql/data:rw
+    networks:
+      - cocktail-manager-network
+
+volumes:
+  cocktail-manager-cocktail-db-data: {}
+
+networks:
+  cocktail-manager-network:

@@ -16,6 +16,10 @@ export class CocktailIngredientService {
         return `This action returns a #${id} cocktail`;
     }
 
+    findBy(id: string) {
+        return `This action returns a #${id} cocktail`;
+    }
+
     update(id: string, updateCocktailIngredientDto: UpdateCocktailIngredientDto) {
         return `This action updates a #${id} cocktail`;
     }
