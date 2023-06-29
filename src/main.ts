@@ -8,8 +8,8 @@ async function bootstrap() {
     {
       transport: Transport.TCP,
       options: {
-        host: '0.0.0.0',
-        port: 6666,
+        host: 'cocktail',
+        port: 7000,
       }
     },
   );

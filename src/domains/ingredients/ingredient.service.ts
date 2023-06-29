@@ -1,26 +1,38 @@
 import { Injectable } from '@nestjs/common';
 import { CreateIngredientDto } from './dto/create-ingredient.dto';
 import { UpdateIngredientDto } from './dto/update-ingredient.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Ingredient } from './ingredient.entity';
 
 @Injectable()
 export class IngredientService {
-  create(createIngredientDto: CreateIngredientDto) {
-    return 'This action adds a new cocktail';
+  constructor(
+    @InjectRepository(Ingredient)
+    private readonly ingredientRepository: Repository<Ingredient>,
+  ) { }
+
+  async create(createIngredientDto: CreateIngredientDto): Promise<Ingredient> {
+    const newIngredient = this.ingredientRepository.create(createIngredientDto);
+    await this.ingredientRepository.save(newIngredient);
+    return newIngredient;
+
   }
 
-  findAll() {
-    return `This action returns all cocktail`;
+  async findAll(): Promise<Ingredient[]> {
+    return await this.ingredientRepository.find();
   }
 
-  findOne(id: string) {
-    return `This action returns a #${id} cocktail`;
+  async findOne(id: string): Promise<Ingredient> {
+    return await this.ingredientRepository.findOneBy({ id });
   }
 
-  update(id: string, updateIngredientDto: UpdateIngredientDto) {
-    return `This action updates a #${id} cocktail`;
+  async update(id: string, updateIngredientDto: UpdateIngredientDto): Promise<Ingredient> {
+    await this.ingredientRepository.update(id, updateIngredientDto);
+    return this.ingredientRepository.findOneBy({ id });
   }
 
-  remove(id: string) {
-    return `This action removes a #${id} cocktail`;
+  async remove(id: string): Promise<void> {
+    await this.ingredientRepository.delete(id);
   }
 }

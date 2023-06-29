@@ -1,26 +1,37 @@
 import { Injectable } from '@nestjs/common';
 import { CreateCocktailDto } from './dto/create-cocktail.dto';
 import { UpdateCocktailDto } from './dto/update-cocktail.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Cocktail } from './cocktail.entity';
 
 @Injectable()
 export class CocktailService {
-  create(createCocktailDto: CreateCocktailDto) {
-    return 'This action adds a new cocktail';
+  constructor(
+    @InjectRepository(Cocktail)
+    private readonly cocktailRepository: Repository<Cocktail>
+  ) { }
+
+  async create(createCocktailDto: CreateCocktailDto): Promise<Cocktail> {
+    const newCocktail = this.cocktailRepository.create(createCocktailDto);
+    await this.cocktailRepository.save(newCocktail);
+    return newCocktail;
   }
 
-  findAll() {
-    return `This action returns all cocktail`;
+  async findAll(): Promise<Cocktail[]> {
+    return await this.cocktailRepository.find();
   }
 
-  findOne(id: string) {
-    return `This action returns a #${id} cocktail`;
+  async findOne(id: string): Promise<Cocktail> {
+    return await this.cocktailRepository.findOneBy({ id });
   }
 
-  update(id: string, updateCocktailDto: UpdateCocktailDto) {
-    return `This action updates a #${id} cocktail`;
+  async update(id: string, updateCocktailDto: UpdateCocktailDto): Promise<Cocktail> {
+    await this.cocktailRepository.update(id, updateCocktailDto);
+    return this.cocktailRepository.findOneBy({ id });
   }
 
-  remove(id: string) {
-    return `This action removes a #${id} cocktail`;
+  async remove(id: string): Promise<void> {
+    await this.cocktailRepository.delete(id);
   }
 }

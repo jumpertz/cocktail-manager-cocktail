@@ -1,30 +1,37 @@
 import { Injectable } from '@nestjs/common';
 import { CreateCocktailIngredientDto } from './dto/create-cocktail_ingredient.dto';
 import { UpdateCocktailIngredientDto } from './dto/update-cocktail_ingredient.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { CocktailIngredient } from './cocktail_ingredient.entity';
 
 @Injectable()
 export class CocktailIngredientService {
-    create(createCocktailIngredientDto: CreateCocktailIngredientDto) {
-        return 'This action adds a new cocktail';
+    constructor(
+        @InjectRepository(CocktailIngredient)
+        private readonly cocktailIngredientRepository: Repository<CocktailIngredient>,
+    ) { }
+
+    async create(createCocktailIngredientDto: CreateCocktailIngredientDto): Promise<CocktailIngredient> {
+        const newCocktailIngredient = this.cocktailIngredientRepository.create(createCocktailIngredientDto);
+        await this.cocktailIngredientRepository.save(newCocktailIngredient);
+        return newCocktailIngredient;
     }
 
-    findAll() {
-        return `This action returns all cocktail`;
+    async findAll(): Promise<CocktailIngredient[]> {
+        return await this.cocktailIngredientRepository.find();
     }
 
-    findOne(id: string) {
-        return `This action returns a #${id} cocktail`;
+    async findOne(id: string): Promise<CocktailIngredient> {
+        return await this.cocktailIngredientRepository.findOneBy({ id });
     }
 
-    findBy(id: string) {
-        return `This action returns a #${id} cocktail`;
+    async update(id: string, updateCocktailIngredientDto: UpdateCocktailIngredientDto): Promise<CocktailIngredient> {
+        await this.cocktailIngredientRepository.update({ id }, updateCocktailIngredientDto);
+        return this.cocktailIngredientRepository.findOneBy({ id });
     }
 
-    update(id: string, updateCocktailIngredientDto: UpdateCocktailIngredientDto) {
-        return `This action updates a #${id} cocktail`;
-    }
-
-    remove(id: string) {
-        return `This action removes a #${id} cocktail`;
+    async remove(id: string): Promise<void> {
+        await this.cocktailIngredientRepository.delete({ id });
     }
 }

@@ -6,10 +6,7 @@ import { Exclude } from "class-transformer";
 @Entity()
 export class CocktailIngredient {
     @PrimaryGeneratedColumn('uuid')
-    cocktailId: string;
-
-    @PrimaryGeneratedColumn('uuid')
-    ingredientId: string;
+    id: string;
 
     @ManyToOne(() => Cocktail, cocktail => cocktail.ingredients)
     cocktail: Cocktail;
