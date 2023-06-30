@@ -1,9 +1,14 @@
-import { IsBoolean, IsString } from "class-validator";
+import { IsBoolean, IsNumber, IsUUID } from "class-validator";
 
 export class CreateCocktailPriceDto {
-    @IsString()
+
+    @IsUUID()
+    cocktailId: string;
+
+    @IsNumber()
     price: number;
 
     @IsBoolean()
     isHappyHour: boolean;
+
 }

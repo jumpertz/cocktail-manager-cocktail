@@ -16,7 +16,7 @@ export class Cocktail {
     // image: string;
 
     @Column()
-    manager: string;
+    managerId: string;
 
     @OneToMany(() => CocktailIngredient, (ci) => ci.cocktail)
     ingredients: CocktailIngredient[];
