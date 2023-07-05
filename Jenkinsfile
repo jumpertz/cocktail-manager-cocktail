@@ -32,7 +32,7 @@ pipeline {
             steps {
               withSonarQubeEnv("${SONARSERVER}") {
                 sh '''${scannerHome}/bin/sonar-scanner \
-                  -Dsonar.projectKey=CocktailManager-cocktails \
+                  -Dsonar.projectKey=cocktail-manager-cocktail \
                   -Dsonar.sources=. \
                   -Dsonar.host.url=http://52.87.237.67:9000/
                   '''
@@ -42,7 +42,7 @@ pipeline {
                     withSonarQubeEnv("${SONARSERVER}") {
                         def scannerHome = tool "${SONARSCANNER}";
                         withEnv(["JAVA_HOME=${ tool 'JDK8' }", "PATH+SONAR=${SONARSCANNER}/bin"]) {
-                            sh "sonar-scanner -Dsonar.projectKey=CocktailManager-cocktails -Dsonar.sources=. -Dsonar.host.url=http://52.87.237.67:9000 -Dsonar.login=ubuntu -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info"
+                            sh "sonar-scanner -Dsonar.projectKey=cocktail-manager-cocktail -Dsonar.sources=. -Dsonar.host.url=http://52.87.237.67:9000 -Dsonar.login=ubuntu -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info"
                         }
                     }
                 }
