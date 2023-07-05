@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         SONARSERVER = 'jenkins-token'
-        SONARSCANNER = 'cocktail-manager-cocktail'
+        SONARSCANNER = 'CocktailManager-auth'
     }
 
     stages {
