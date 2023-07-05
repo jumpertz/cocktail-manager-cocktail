@@ -34,7 +34,43 @@ describe('CocktailController', () => {
   });
 
   it('doit créer un cocktail', async () => {
-    const dto: CreateCocktailDto = { ... };
+    const dto: CreateCocktailDto = {
+      name: 'Mojito',
+      description:
+        'Un cocktail rafraîchissant à base de rhum, de menthe, de citron vert et de soda.',
+      cocktailPrices: [
+        {
+          cocktailId: 'UUID_OF_COCKTAIL', // Remplacez par une vraie valeur
+          price: 7,
+          isHappyHour: false,
+        },
+      ],
+      cocktailIngredients: [
+        {
+          cocktailId: 'UUID_OF_COCKTAIL', // Remplacez par une vraie valeur
+          ingredientId: 'UUID_OF_INGREDIENT', // Remplacez par une vraie valeur
+          quantity: 50,
+        },
+        {
+          cocktailId: 'UUID_OF_COCKTAIL', // Remplacez par une vraie valeur
+          ingredientId: 'UUID_OF_ANOTHER_INGREDIENT', // Remplacez par une vraie valeur
+          quantity: 10,
+        },
+      ],
+      cocktailSteps: [
+        {
+          cocktailId: 'UUID_OF_COCKTAIL', // Remplacez par une vraie valeur
+          position: 1,
+          description: 'Etape 1: Préparer les ingrédients',
+        },
+        {
+          cocktailId: 'UUID_OF_COCKTAIL', // Remplacez par une vraie valeur
+          position: 2,
+          description: 'Etape 2: Mélanger les ingrédients',
+        },
+      ],
+    };
+
     expect(await cocktailController.create(dto)).toBe('createCocktail');
     expect(cocktailService.create).toHaveBeenCalledWith(dto);
   });
@@ -51,7 +87,12 @@ describe('CocktailController', () => {
   });
 
   it('doit mettre à jour un cocktail', async () => {
-    const dto: UpdateCocktailDto = { id: '123', ... };
+    const dto: UpdateCocktailDto = {
+      id: '123',
+      name: 'Mojito modifié',
+      ingredients: ['Rhum', 'Menthe', 'Sucre', 'Eau gazeuse'],
+      // Ajoutez tous les autres champs nécessaires pour un UpdateCocktailDto ici
+    };
     expect(await cocktailController.update(dto)).toBe('updateCocktail');
     expect(cocktailService.update).toHaveBeenCalledWith(dto.id, dto);
   });

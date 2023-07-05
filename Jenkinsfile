@@ -50,11 +50,11 @@ pipeline {
             }
         }
         
-        stage('Archive Code Coverage') {
-          steps {
-            archiveArtifacts artifacts: 'coverage/**', onlyIfSuccessful: true
-          }
-        }
+        // stage('Archive Code Coverage') {
+        //   steps {
+        //     archiveArtifacts artifacts: 'coverage/**', onlyIfSuccessful: true
+        //   }
+        // }
 
         stage('Build') {
             steps {
