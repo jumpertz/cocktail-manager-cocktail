@@ -1,12 +1,9 @@
 import { IsNotEmpty, IsNumber, IsString, IsUUID } from "class-validator";
-import { Cocktail } from "src/domains/cocktails/cocktail.entity";
-import { DeepPartial } from "typeorm";
 
 export class CreateCocktailStepDto {
 
     @IsNotEmpty()
-    @IsUUID()
-    cocktail: DeepPartial<Cocktail>;
+    cocktail: { id: string };
 
     @IsNotEmpty()
     @IsNumber()
@@ -15,5 +12,4 @@ export class CreateCocktailStepDto {
     @IsNotEmpty()
     @IsString()
     description: string;
-
 }

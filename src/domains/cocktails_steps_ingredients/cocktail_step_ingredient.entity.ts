@@ -14,7 +14,7 @@ export class CocktailStepIngredient {
     @Column()
     description: string;
 
-    @OneToMany(() => CocktailStep, cocktailStep => cocktailStep.cocktailStepIngredients)
+    @ManyToOne(() => CocktailStep, cocktailStep => cocktailStep.cocktailStepIngredients)
     cocktailStep: CocktailStep;
 
     @ManyToOne(() => Ingredient, ingredient => ingredient.cocktailStepIngredients)

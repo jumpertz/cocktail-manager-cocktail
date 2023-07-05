@@ -12,7 +12,7 @@ export class CocktailStepIngredientService {
     private cocktailStepRepository: Repository<CocktailStepIngredient>,
   ) { }
 
-  async create(createCocktailStepIngredientDto: CreateCocktailStepIngredientDto): Promise<CocktailStepIngredient> {
+  async create(createCocktailStepIngredientDto: CreateCocktailStepIngredientDto): Promise<any> {
     const newCocktailStepIngredient = this.cocktailStepRepository.create(createCocktailStepIngredientDto);
     return this.cocktailStepRepository.save(newCocktailStepIngredient);
   }

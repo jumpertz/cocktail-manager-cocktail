@@ -27,14 +27,21 @@ export class CocktailService {
     return await this.cocktailRepository.findOne(
       {
         where: { id },
-        // relations: ['steps', 'steps.stepIngredients', 'steps.stepIngredients.ingredient'],
         relations: {
           steps: {
             cocktailStepIngredients: {
-              ingredient: true
+              ingredient: true,
             }
           }
         },
+        order: {
+          steps: {
+            position: 'ASC',
+            cocktailStepIngredients: {
+              position: 'ASC',
+            }
+          },
+        }
       });
   }
 
