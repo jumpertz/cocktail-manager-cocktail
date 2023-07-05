@@ -1,7 +1,6 @@
 import { Column, CreateDateColumn, DeleteDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
-import { CocktailIngredient } from "../cocktails_ingredients/cocktail_ingredient.entity";
+// import { CocktailIngredient } from "../cocktails_ingredients/cocktail_ingredient.entity";
 import { CocktailStep } from "../cocktails_steps/cocktail_step.entity";
-import { CocktailPrice } from "../cocktails_prices/cocktail_price.entity";
 import { Exclude } from "class-transformer";
 
 @Entity()
@@ -18,14 +17,17 @@ export class Cocktail {
     @Column()
     managerId: string;
 
-    @OneToMany(() => CocktailIngredient, (ci) => ci.cocktail)
-    ingredients: CocktailIngredient[];
+    // @OneToMany(() => CocktailIngredient, (ci) => ci.cocktail)
+    // ingredients: CocktailIngredient[];
 
     @OneToMany(() => CocktailStep, (cs) => cs.cocktail)
     steps: CocktailStep[];
 
-    @OneToMany(() => CocktailPrice, (cp) => cp.cocktail)
-    prices: CocktailPrice[];
+    @Column({ type: 'float' })
+    price: number;
+
+    @Column({ type: 'float' })
+    HHPrice: number;
 
     @CreateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
     @Exclude()

@@ -1,6 +1,7 @@
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { Cocktail } from "../cocktails/cocktail.entity";
 import { Exclude } from "class-transformer";
+import { CocktailStepIngredient } from "../cocktails_steps_ingredients/cocktail_step_ingredient.entity";
 
 @Entity()
 export class CocktailStep {
@@ -15,6 +16,9 @@ export class CocktailStep {
 
     @ManyToOne(() => Cocktail, cocktail => cocktail.steps)
     cocktail: Cocktail;
+
+    @OneToMany(() => CocktailStepIngredient, cocktailStepIngredient => cocktailStepIngredient.cocktailStep)
+    cocktailStepIngredients: CocktailStepIngredient[];
 
     @CreateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
     @Exclude()

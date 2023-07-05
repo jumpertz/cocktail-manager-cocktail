@@ -1,7 +1,5 @@
 import { Type } from "class-transformer";
-import { IsNotEmpty, IsString, ValidateNested } from "class-validator";
-import { CreateCocktailIngredientDto } from "src/domains/cocktails_ingredients/dto/create-cocktail_ingredient.dto";
-import { CreateCocktailPriceDto } from "src/domains/cocktails_prices/dto/create-cocktail_price.dto";
+import { IsNotEmpty, IsNumber, IsString, ValidateNested } from "class-validator";
 import { CreateCocktailStepDto } from "src/domains/cocktails_steps/dto/create-cocktail_step.dto";
 
 export class CreateCocktailDto {
@@ -17,13 +15,13 @@ export class CreateCocktailDto {
     // @IsNotEmpty()
     // image: string;
 
-    @ValidateNested({ each: true })
-    @Type(() => CreateCocktailPriceDto)
-    cocktailPrices: CreateCocktailPriceDto[];
+    @IsNotEmpty()
+    @IsNumber()
+    price: number;
 
-    @ValidateNested({ each: true })
-    @Type(() => CreateCocktailIngredientDto)
-    cocktailIngredients: CreateCocktailIngredientDto[];
+    @IsNotEmpty()
+    @IsNumber()
+    HHPrice: number;
 
     @ValidateNested({ each: true })
     @Type(() => CreateCocktailStepDto)

@@ -1,6 +1,6 @@
 import { Column, CreateDateColumn, DeleteDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
-import { CocktailIngredient } from "../cocktails_ingredients/cocktail_ingredient.entity";
 import { Exclude } from "class-transformer";
+import { CocktailStepIngredient } from "../cocktails_steps_ingredients/cocktail_step_ingredient.entity";
 
 @Entity()
 export class Ingredient {
@@ -16,8 +16,8 @@ export class Ingredient {
     @Column()
     allergen: boolean;
 
-    @OneToMany(() => CocktailIngredient, (ci) => ci.ingredient)
-    cocktails: CocktailIngredient[];
+    @OneToMany(() => CocktailStepIngredient, (ci) => ci.ingredient)
+    cocktailStepIngredients: CocktailStepIngredient[];
 
     @Column()
     stock: number;

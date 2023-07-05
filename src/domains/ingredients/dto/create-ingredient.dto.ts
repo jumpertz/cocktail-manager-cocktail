@@ -1,5 +1,5 @@
 import { IsBoolean, IsNotEmpty, IsNumber, IsString, IsUUID } from "class-validator";
-import { CocktailIngredient } from "src/domains/cocktails_ingredients/cocktail_ingredient.entity";
+import { CocktailStepIngredient } from "src/domains/cocktails_steps_ingredients/cocktail_step_ingredient.entity";
 import { DeepPartial } from "typeorm";
 
 export class CreateIngredientDto {
@@ -8,20 +8,17 @@ export class CreateIngredientDto {
     @IsString()
     name: string;
 
+    @IsNotEmpty()
+    @IsString()
     unit: string;
 
     @IsNotEmpty()
     @IsBoolean()
     allergen: boolean;
 
-    @IsNotEmpty()
     @IsNumber()
     stock: number;
 
-    @IsNotEmpty()
     @IsNumber()
     stockAlert: number;
-
-    cocktails: DeepPartial<CocktailIngredient[]>;
-
 }

@@ -4,6 +4,7 @@ import { UpdateCocktailDto } from './dto/update-cocktail.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Cocktail } from './cocktail.entity';
+import { Ingredient } from '../ingredients/ingredient.entity';
 
 @Injectable()
 export class CocktailService {
@@ -23,7 +24,18 @@ export class CocktailService {
   }
 
   async findOne(id: string): Promise<Cocktail> {
-    return await this.cocktailRepository.findOneBy({ id });
+    return await this.cocktailRepository.findOne(
+      {
+        where: { id },
+        // relations: ['steps', 'steps.stepIngredients', 'steps.stepIngredients.ingredient'],
+        relations: {
+          steps: {
+            cocktailStepIngredients: {
+              ingredient: true
+            }
+          }
+        },
+      });
   }
 
   async update(id: string, updateCocktailDto: UpdateCocktailDto): Promise<Cocktail> {
