@@ -6,12 +6,10 @@ import { DeepPartial } from "typeorm";
 export class CreateCocktailStepIngredientDto {
 
     @IsNotEmpty()
-    @IsUUID()
-    cocktailStep: DeepPartial<CocktailStep>;
+    cocktailStep: { id: string };
 
     @IsNotEmpty()
-    @IsUUID()
-    ingredient: DeepPartial<Ingredient>;
+    ingredient: { id: string };
 
     @IsNotEmpty()
     @IsNumber()

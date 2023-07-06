@@ -20,6 +20,9 @@ export class CocktailStepIngredient {
     @ManyToOne(() => Ingredient, ingredient => ingredient.cocktailStepIngredients)
     ingredient: Ingredient;
 
+    @Column()
+    quantity: number;
+
     @CreateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
     @Exclude()
     createdAt: Date;

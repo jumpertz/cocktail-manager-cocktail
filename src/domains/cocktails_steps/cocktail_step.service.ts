@@ -26,6 +26,7 @@ export class CocktailStepService {
   }
 
   async update(id: string, updateCocktailStepDto: UpdateCocktailStepDto): Promise<CocktailStep> {
+    console.log('updateCocktailStepDto', updateCocktailStepDto)
     await this.cocktailStepRepository.update(id, updateCocktailStepDto);
     return this.cocktailStepRepository.findOneBy({ id });
   }

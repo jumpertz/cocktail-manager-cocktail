@@ -1,5 +1,5 @@
 import { Controller } from '@nestjs/common';
-import { MessagePattern, Payload } from '@nestjs/microservices';
+import { EventPattern, MessagePattern, Payload } from '@nestjs/microservices';
 import { CocktailStepIngredientService } from './cocktail_step_ingredient.service';
 import { CreateCocktailStepIngredientDto } from './dto/create-cocktail_step_ingredient.dto';
 import { UpdateCocktailStepIngredientDto } from './dto/update-cocktail_step_ingredient.dto';
@@ -8,27 +8,27 @@ import { UpdateCocktailStepIngredientDto } from './dto/update-cocktail_step_ingr
 export class CocktailStepIngredientController {
   constructor(private readonly stepIngredientService: CocktailStepIngredientService) { }
 
-  @MessagePattern('createCocktailStepIngredient')
+  @EventPattern('createCocktailStepIngredient')
   create(@Payload() createCocktailStepIngredientDto: CreateCocktailStepIngredientDto) {
     return this.stepIngredientService.create(createCocktailStepIngredientDto);
   }
 
-  @MessagePattern('findAllCocktailStepIngredient')
+  @EventPattern('findAllCocktailStepIngredient')
   findAll() {
     return this.stepIngredientService.findAll();
   }
 
-  @MessagePattern('findOneCocktailStepIngredient')
+  @EventPattern('findOneCocktailStepIngredient')
   findOne(@Payload() id: string) {
     return this.stepIngredientService.findOne(id);
   }
 
-  @MessagePattern('updateCocktailStepIngredient')
+  @EventPattern('updateCocktailStepIngredient')
   update(@Payload() updateCocktailStepIngredientDto: UpdateCocktailStepIngredientDto) {
     return this.stepIngredientService.update(updateCocktailStepIngredientDto.id, updateCocktailStepIngredientDto);
   }
 
-  @MessagePattern('removeCocktailStepIngredient')
+  @EventPattern('removeCocktailStepIngredient')
   remove(@Payload() id: string) {
     return this.stepIngredientService.remove(id);
   }

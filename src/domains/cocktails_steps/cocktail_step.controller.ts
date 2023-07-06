@@ -1,35 +1,41 @@
 import { Controller } from '@nestjs/common';
-import { MessagePattern, Payload } from '@nestjs/microservices';
+import { EventPattern, Payload } from '@nestjs/microservices';
 import { CocktailStepService } from './cocktail_step.service';
 import { CreateCocktailStepDto } from './dto/create-cocktail_step.dto';
 import { UpdateCocktailStepDto } from './dto/update-cocktail_step.dto';
+import { UpdateCocktailStepIngredientDto } from '../cocktails_steps_ingredients/dto/update-cocktail_step_ingredient.dto';
+import { CocktailStepIngredientService } from '../cocktails_steps_ingredients/cocktail_step_ingredient.service';
+import { CreateCocktailStepIngredientDto } from '../cocktails_steps_ingredients/dto/create-cocktail_step_ingredient.dto';
 
 @Controller()
 export class CocktailStepController {
-  constructor(private readonly ingredientService: CocktailStepService) { }
+  constructor(
+    private readonly cocktailStepService: CocktailStepService,
+    private readonly cocktailStepIngredientService: CocktailStepIngredientService
+  ) { }
 
-  @MessagePattern('createCocktailStep')
+  @EventPattern('createCocktailStep')
   create(@Payload() createCocktailStepDto: CreateCocktailStepDto) {
-    return this.ingredientService.create(createCocktailStepDto);
+    return this.cocktailStepService.create(createCocktailStepDto);
   }
 
-  @MessagePattern('findAllCocktailStep')
+  @EventPattern('findAllCocktailStep')
   findAll() {
-    return this.ingredientService.findAll();
+    return this.cocktailStepService.findAll();
   }
 
-  @MessagePattern('findOneCocktailStep')
+  @EventPattern('findOneCocktailStep')
   findOne(@Payload() id: string) {
-    return this.ingredientService.findOne(id);
+    return this.cocktailStepService.findOne(id);
   }
 
-  @MessagePattern('updateCocktailStep')
-  update(@Payload() updateCocktailStepDto: UpdateCocktailStepDto) {
-    return this.ingredientService.update(updateCocktailStepDto.id, updateCocktailStepDto);
+  @EventPattern('updateCocktailStep')
+  async update(@Payload() cocktailStep: UpdateCocktailStepDto) {
+    const s = await this.cocktailStepService.update(cocktailStep.id, cocktailStep);
   }
 
-  @MessagePattern('removeCocktailStep')
+  @EventPattern('removeCocktailStep')
   remove(@Payload() id: string) {
-    return this.ingredientService.remove(id);
+    return this.cocktailStepService.remove(id);
   }
 }
