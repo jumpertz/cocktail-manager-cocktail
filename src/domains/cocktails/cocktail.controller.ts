@@ -67,11 +67,16 @@ export class CocktailController {
             }
 
             for (const cocktailStepIngredient of cocktailStepIngredients) {
-                if (cocktailStepIngredient.hasOwnProperty('id')) {
+                if (!c.steps.find(s => s.id === step.id)) {
+                    await this.cocktailStepIngredientService.remove(cocktailStepIngredient.id);
+                }
+                else {
                     const { ingredient, ...cocktailStepIngredientData } = cocktailStepIngredient;
-                    await this.cocktailStepIngredientService.update(cocktailStepIngredient.id, cocktailStepIngredientData);
-                } else {
-                    await this.cocktailStepIngredientService.create(cocktailStepIngredient as CreateCocktailStepIngredientDto);
+                    if (cocktailStepIngredient.hasOwnProperty('id')) {
+                        await this.cocktailStepIngredientService.update(cocktailStepIngredient.id, cocktailStepIngredientData);
+                    } else {
+                        await this.cocktailStepIngredientService.create(cocktailStepIngredient as CreateCocktailStepIngredientDto);
+                    }
                 }
             }
         }
