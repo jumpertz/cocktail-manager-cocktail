@@ -2,6 +2,7 @@ import { Column, CreateDateColumn, DeleteDateColumn, Entity, OneToMany, PrimaryG
 // import { CocktailIngredient } from "../cocktails_ingredients/cocktail_ingredient.entity";
 import { CocktailStep } from "../cocktails_steps/cocktail_step.entity";
 import { Exclude } from "class-transformer";
+import { IsUrl } from "class-validator";
 
 @Entity()
 export class Cocktail {
@@ -11,8 +12,12 @@ export class Cocktail {
     @Column()
     name: string;
 
-    // @Column()
-    // image: string;
+    @Column()
+    @IsUrl()
+    image: string;
+
+    @Column({ default: null })
+    description: string;
 
     @Column()
     managerId: string;
